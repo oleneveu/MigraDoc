@@ -41,7 +41,7 @@ namespace MigraDoc.Rendering
         public override FormatInfo FormatInfo
         {
             get { return _formatInfo ?? (_formatInfo = new ChartFormatInfo()); }
-            internal set { _formatInfo = (ChartFormatInfo)value; }
+            set { _formatInfo = (ChartFormatInfo)value; }
         }
         ChartFormatInfo _formatInfo;
     }

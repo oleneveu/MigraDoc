@@ -41,7 +41,7 @@ namespace MigraDoc.Rendering
         public override FormatInfo FormatInfo
         {
             get { return _formatInfo ?? (_formatInfo = new ImageFormatInfo()); }
-            internal set { _formatInfo = (ImageFormatInfo)value; }
+            set { _formatInfo = (ImageFormatInfo)value; }
         }
         ImageFormatInfo _formatInfo;
     }

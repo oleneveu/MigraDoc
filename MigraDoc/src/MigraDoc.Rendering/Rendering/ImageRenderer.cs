@@ -57,7 +57,7 @@ namespace MigraDoc.Rendering
             _image = (Image)renderInfo.DocumentObject;
         }
 
-        internal override void Format(Area area, FormatInfo previousFormatInfo)
+        public override void Format(Area area, FormatInfo previousFormatInfo)
         {
             _imageFilePath = _image.GetFilePath(_documentRenderer.WorkingDirectory);
             // The Image is stored in the string if path starts with "base64:", otherwise we check whether the file exists.
@@ -92,7 +92,7 @@ namespace MigraDoc.Rendering
             }
         }
 
-        internal override void Render()
+        public override void Render()
         {
             RenderFilling();
 

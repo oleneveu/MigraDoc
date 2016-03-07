@@ -53,7 +53,7 @@ namespace MigraDoc.Rendering
             _textframe = (TextFrame)renderInfo.DocumentObject;
         }
 
-        internal override void Format(Area area, FormatInfo previousFormatInfo)
+        public override void Format(Area area, FormatInfo previousFormatInfo)
         {
             FormattedTextFrame formattedTextFrame = new FormattedTextFrame(_textframe, _documentRenderer, _fieldInfos);
             formattedTextFrame.Format(_gfx);
@@ -61,12 +61,12 @@ namespace MigraDoc.Rendering
             base.Format(area, previousFormatInfo);
         }
 
-        internal override LayoutInfo InitialLayoutInfo
+        public override LayoutInfo InitialLayoutInfo
         {
             get { return base.InitialLayoutInfo; }
         }
 
-        internal override void Render()
+        public override void Render()
         {
             RenderFilling();
             RenderContent();

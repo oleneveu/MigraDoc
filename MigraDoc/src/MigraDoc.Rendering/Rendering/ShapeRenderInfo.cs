@@ -47,7 +47,7 @@ namespace MigraDoc.Rendering
         public override DocumentObject DocumentObject
         {
             get { return _shape; }
-            internal set { _shape = (Shape)value; }
+            set { _shape = (Shape)value; }
         }
         Shape _shape;
     }

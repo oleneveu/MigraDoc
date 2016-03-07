@@ -38,9 +38,9 @@ namespace MigraDoc.Rendering
     /// <summary>
     /// Renders a shape to an XGraphics object.
     /// </summary>
-    internal abstract class ShapeRenderer : Renderer
+    public abstract class ShapeRenderer : Renderer
     {
-        internal ShapeRenderer(XGraphics gfx, Shape shape, FieldInfos fieldInfos)
+        public ShapeRenderer(XGraphics gfx, Shape shape, FieldInfos fieldInfos)
             : base(gfx, shape, fieldInfos)
         {
             _shape = shape;
@@ -48,7 +48,7 @@ namespace MigraDoc.Rendering
             _lineFormatRenderer = new LineFormatRenderer(lf, gfx);
         }
 
-        internal ShapeRenderer(XGraphics gfx, RenderInfo renderInfo, FieldInfos fieldInfos)
+        public ShapeRenderer(XGraphics gfx, RenderInfo renderInfo, FieldInfos fieldInfos)
             : base(gfx, renderInfo, fieldInfos)
         {
             _shape = (Shape)renderInfo.DocumentObject;
@@ -58,7 +58,7 @@ namespace MigraDoc.Rendering
             _fillFormatRenderer = new FillFormatRenderer(ff, gfx);
         }
 
-        internal override LayoutInfo InitialLayoutInfo
+        public override LayoutInfo InitialLayoutInfo
         {
             get
             {
@@ -115,7 +115,7 @@ namespace MigraDoc.Rendering
         /// </summary>
         /// <param name="area">The area to fit in the shape.</param>
         /// <param name="previousFormatInfo"></param>
-        internal override void Format(Area area, FormatInfo previousFormatInfo)
+        public override void Format(Area area, FormatInfo previousFormatInfo)
         {
             Floating floating = GetFloating();
             bool fits = floating == Floating.None || ShapeHeight <= area.Height;

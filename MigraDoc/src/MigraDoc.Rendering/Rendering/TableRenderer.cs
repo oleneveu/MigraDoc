@@ -57,7 +57,7 @@ namespace MigraDoc.Rendering
             _table = (Table)_renderInfo.DocumentObject;
         }
 
-        internal override LayoutInfo InitialLayoutInfo
+        public override LayoutInfo InitialLayoutInfo
         {
             get
             {
@@ -272,7 +272,7 @@ namespace MigraDoc.Rendering
             return new Rectangle(x, y, width, height);
         }
 
-        internal override void Render()
+        public override void Render()
         {
             InitRendering();
             RenderHeaderRows();
@@ -354,7 +354,7 @@ namespace MigraDoc.Rendering
         /// </summary>
         /// <param name="area"> The area on which to fit the table. </param>
         /// <param name="previousFormatInfo"> </param>
-        internal override void Format(Area area, FormatInfo previousFormatInfo)
+        public override void Format(Area area, FormatInfo previousFormatInfo)
         {
             DocumentElements elements = DocumentRelations.GetParent(_table) as DocumentElements;
             if (elements != null)

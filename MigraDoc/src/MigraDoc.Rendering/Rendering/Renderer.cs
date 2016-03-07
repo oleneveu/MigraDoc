@@ -39,25 +39,25 @@ namespace MigraDoc.Rendering
     /// <summary>
     /// Abstract base class for all renderers.
     /// </summary>
-    internal abstract class Renderer
+    public abstract class Renderer
     {
         /// <summary>
         /// Determines the maximum height a single element may have.
         /// </summary>
-        internal XUnit MaxElementHeight
+        public XUnit MaxElementHeight
         {
             get { return _maxElementHeight; }
             set { _maxElementHeight = value; }
         }
 
-        internal Renderer(XGraphics gfx, DocumentObject documentObject, FieldInfos fieldInfos)
+        public Renderer(XGraphics gfx, DocumentObject documentObject, FieldInfos fieldInfos)
         {
             _documentObject = documentObject;
             _gfx = gfx;
             _fieldInfos = fieldInfos;
         }
 
-        internal Renderer(XGraphics gfx, RenderInfo renderInfo, FieldInfos fieldInfos)
+        public Renderer(XGraphics gfx, RenderInfo renderInfo, FieldInfos fieldInfos)
         {
             _documentObject = renderInfo.DocumentObject;
             _gfx = gfx;
@@ -75,7 +75,7 @@ namespace MigraDoc.Rendering
         /// KeepTogether, KeepWithNext, PagebreakBefore, Floating,
         /// VerticalReference, HorizontalReference.
         /// </remarks>
-        internal abstract LayoutInfo InitialLayoutInfo { get; }
+        public abstract LayoutInfo InitialLayoutInfo { get; }
 
         /// <summary>
         /// Renders the contents shifted to the given Coordinates.
@@ -109,7 +109,7 @@ namespace MigraDoc.Rendering
         /// <summary>
         /// Gets the render information necessary to render and position the object.
         /// </summary>
-        internal RenderInfo RenderInfo
+        public RenderInfo RenderInfo
         {
             get { return _renderInfo; }
         }
@@ -119,7 +119,7 @@ namespace MigraDoc.Rendering
         /// Sets the field infos object.
         /// </summary>
         /// <remarks>This property is set by the AreaProvider.</remarks>
-        internal FieldInfos FieldInfos
+        public FieldInfos FieldInfos
         {
             set { _fieldInfos = value; }
         }
@@ -128,7 +128,7 @@ namespace MigraDoc.Rendering
         /// <summary>
         /// Renders (draws) the object to the Graphics object.
         /// </summary>
-        internal abstract void Render();
+        public abstract void Render();
 
         /// <summary>
         /// Formats the object by calculating distances and linebreaks and stopping when the area is filled.
@@ -136,7 +136,7 @@ namespace MigraDoc.Rendering
         /// <param name="area">The area to render into.</param>
         /// <param name="previousFormatInfo">An information object received from a previous call of Format().
         /// Null for the first call.</param>
-        internal abstract void Format(Area area, FormatInfo previousFormatInfo);
+        public abstract void Format(Area area, FormatInfo previousFormatInfo);
 
         /// <summary>
         /// Creates a fitting renderer for the given document object for formatting.
@@ -146,7 +146,7 @@ namespace MigraDoc.Rendering
         /// <param name="documentObject">the document object to format.</param>
         /// <param name="fieldInfos">The field infos.</param>
         /// <returns>The fitting Renderer.</returns>
-        internal static Renderer Create(XGraphics gfx, DocumentRenderer documentRenderer, DocumentObject documentObject, FieldInfos fieldInfos)
+        public static Renderer Create(XGraphics gfx, DocumentRenderer documentRenderer, DocumentObject documentObject, FieldInfos fieldInfos)
         {
             Renderer renderer = null;
             if (documentObject is Paragraph)
@@ -161,6 +161,12 @@ namespace MigraDoc.Rendering
                 renderer = new ChartRenderer(gfx, (Chart)documentObject, fieldInfos);
             else if (documentObject is Image)
                 renderer = new ImageRenderer(gfx, (Image)documentObject, fieldInfos);
+            else if (GetRendererType != null)
+            {
+                System.Type rendererType = GetRendererType(documentObject);
+                if (rendererType != null)
+                    renderer = (Renderer)System.Activator.CreateInstance(rendererType, gfx, documentObject, fieldInfos);
+            }
 
             if (renderer != null)
                 renderer._documentRenderer = documentRenderer;
@@ -176,7 +182,7 @@ namespace MigraDoc.Rendering
         /// <param name="renderInfo">The RenderInfo object stored after a previous call of Format().</param>
         /// <param name="fieldInfos">The field infos.</param>
         /// <returns>The fitting Renderer.</returns>
-        internal static Renderer Create(XGraphics gfx, DocumentRenderer documentRenderer, RenderInfo renderInfo, FieldInfos fieldInfos)
+        public static Renderer Create(XGraphics gfx, DocumentRenderer documentRenderer, RenderInfo renderInfo, FieldInfos fieldInfos)
         {
             Renderer renderer = null;
 
@@ -194,6 +200,12 @@ namespace MigraDoc.Rendering
             //  renderer = new ChartRenderer(gfx, renderInfo, fieldInfos);
             else if (renderInfo.DocumentObject is Image)
                 renderer = new ImageRenderer(gfx, renderInfo, fieldInfos);
+            else if (GetRendererType != null)
+            {
+                System.Type rendererType = GetRendererType(renderInfo.DocumentObject);
+                if (rendererType != null)
+                    renderer = (Renderer)System.Activator.CreateInstance(rendererType, gfx, renderInfo, fieldInfos);
+            }
 
             if (renderer != null)
                 renderer._documentRenderer = documentRenderer;
@@ -201,7 +213,11 @@ namespace MigraDoc.Rendering
             return renderer;
         }
 
-        internal readonly static XUnit Tolerance = XUnit.FromPoint(0.001);
+        public static GetRendererTypeCallback GetRendererType { get; set; }
+
+        public delegate System.Type GetRendererTypeCallback(DocumentObject documentObject);
+
+        public readonly static XUnit Tolerance = XUnit.FromPoint(0.001);
         private XUnit _maxElementHeight = -1;
 
         protected DocumentObject _documentObject;

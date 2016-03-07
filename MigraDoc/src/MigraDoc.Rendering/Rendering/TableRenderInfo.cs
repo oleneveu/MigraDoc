@@ -47,7 +47,7 @@ namespace MigraDoc.Rendering
         public override FormatInfo FormatInfo
         {
             get { return _formatInfo; }
-            internal set { _formatInfo = (TableFormatInfo)value; }
+            set { _formatInfo = (TableFormatInfo)value; }
         }
         TableFormatInfo _formatInfo = new TableFormatInfo();
 
@@ -57,7 +57,7 @@ namespace MigraDoc.Rendering
         public override DocumentObject DocumentObject
         {
             get { return _table; }
-            internal set { _table = (Table)value; }
+            set { _table = (Table)value; }
         }
         Table _table;
     }

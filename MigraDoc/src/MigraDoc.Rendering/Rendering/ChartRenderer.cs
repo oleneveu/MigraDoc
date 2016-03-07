@@ -208,7 +208,7 @@ namespace MigraDoc.Rendering
             return new Rectangle(left, top, right - left, bottom - top);
         }
 
-        internal override void Format(Area area, FormatInfo previousFormatInfo)
+        public override void Format(Area area, FormatInfo previousFormatInfo)
         {
             ChartFormatInfo formatInfo = (ChartFormatInfo)_renderInfo.FormatInfo;
 
@@ -311,7 +311,7 @@ namespace MigraDoc.Rendering
             lineFormatRenderer.Render(rect.X, rect.Y, rect.Width, rect.Height);
         }
 
-        internal override void Render()
+        public override void Render()
         {
             RenderFilling();
             Area contentArea = _renderInfo.LayoutInfo.ContentArea;

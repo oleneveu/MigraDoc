@@ -36,14 +36,14 @@ namespace MigraDoc.Rendering
     /// <summary>
     /// Field information used to fill fields when rendering or formatting.
     /// </summary>
-    internal class FieldInfos
+    public class FieldInfos
     {
         internal FieldInfos(Dictionary<string, BookmarkInfo> bookmarks)
         {
             _bookmarks = bookmarks;
         }
 
-        internal void AddBookmark(string name)
+        public void AddBookmark(string name)
         {
             if (PhysicalPageNr <= 0)
                 return;
@@ -55,7 +55,7 @@ namespace MigraDoc.Rendering
                 _bookmarks.Add(name, new BookmarkInfo(PhysicalPageNr, DisplayPageNr));
         }
 
-        internal int GetShownPageNumber(string bookmarkName)
+        public int GetShownPageNumber(string bookmarkName)
         {
             if (_bookmarks.ContainsKey(bookmarkName))
             {
@@ -65,7 +65,7 @@ namespace MigraDoc.Rendering
             return -1;
         }
 
-        internal int GetPhysicalPageNumber(string bookmarkName)
+        public int GetPhysicalPageNumber(string bookmarkName)
         {
             if (_bookmarks.ContainsKey(bookmarkName))
             {
@@ -75,24 +75,24 @@ namespace MigraDoc.Rendering
             return -1;
         }
 
-        internal struct BookmarkInfo
+        public struct BookmarkInfo
         {
-            internal BookmarkInfo(int physicalPageNumber, int displayPageNumber)
+            public BookmarkInfo(int physicalPageNumber, int displayPageNumber)
             {
                 DisplayPageNumber = physicalPageNumber;
                 ShownPageNumber = displayPageNumber;
             }
 
-            internal readonly int DisplayPageNumber;
-            internal readonly int ShownPageNumber;
+            public readonly int DisplayPageNumber;
+            public readonly int ShownPageNumber;
         }
 
         readonly Dictionary<string, BookmarkInfo> _bookmarks;
-        internal int DisplayPageNr;
-        internal int PhysicalPageNr;
-        internal int Section;
-        internal int SectionPages;
-        internal int NumPages;
-        internal DateTime Date;
+        public int DisplayPageNr;
+        public int PhysicalPageNr;
+        public int Section;
+        public int SectionPages;
+        public int NumPages;
+        public DateTime Date;
     }
 }

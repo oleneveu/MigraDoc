@@ -46,7 +46,7 @@ namespace MigraDoc.Rendering
         public override FormatInfo FormatInfo
         {
             get { return _pageBreakFormatInfo; }
-            internal set { _pageBreakFormatInfo = (PageBreakFormatInfo)value; }
+            set { _pageBreakFormatInfo = (PageBreakFormatInfo)value; }
         }
         PageBreakFormatInfo _pageBreakFormatInfo;
 
@@ -56,7 +56,7 @@ namespace MigraDoc.Rendering
         public override DocumentObject DocumentObject
         {
             get { return _pageBreak; }
-            internal set { _pageBreak = (PageBreak)value; }
+            set { _pageBreak = (PageBreak)value; }
         }
         PageBreak _pageBreak;
     }

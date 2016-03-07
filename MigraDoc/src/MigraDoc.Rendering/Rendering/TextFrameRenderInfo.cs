@@ -41,7 +41,7 @@ namespace MigraDoc.Rendering
         public override FormatInfo FormatInfo
         {
             get { return _formatInfo ?? (_formatInfo = new TextFrameFormatInfo()); }
-            internal set { _formatInfo = (TextFrameFormatInfo)value; }
+            set { _formatInfo = (TextFrameFormatInfo)value; }
         }
         TextFrameFormatInfo _formatInfo;
     }

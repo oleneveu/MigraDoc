@@ -127,7 +127,7 @@ namespace MigraDoc.Rendering
         /// <summary>
         /// Renders the paragraph.
         /// </summary>
-        internal override void Render()
+        public override void Render()
         {
             InitRendering();
             if ((int)_paragraph.Format.OutlineLevel >= 1 && _gfx.PdfPage != null) // Don't call GetOutlineTitle() in vain
@@ -276,7 +276,7 @@ namespace MigraDoc.Rendering
         /// The following layout information is set properly:<br />
         /// MarginTop, MarginLeft, MarginRight, MarginBottom, KeepTogether, KeepWithNext, PagebreakBefore.
         /// </remarks>
-        internal override LayoutInfo InitialLayoutInfo
+        public override LayoutInfo InitialLayoutInfo
         {
             get
             {
@@ -1378,7 +1378,7 @@ namespace MigraDoc.Rendering
         /// </summary>
         /// <param name="area">The area in which to render.</param>
         /// <param name="previousFormatInfo">The format info that was obtained on formatting the same paragraph on a previous area.</param>
-        internal override void Format(Area area, FormatInfo previousFormatInfo)
+        public override void Format(Area area, FormatInfo previousFormatInfo)
         {
             ParagraphFormatInfo formatInfo = ((ParagraphFormatInfo)_renderInfo.FormatInfo);
             if (!InitFormat(area, previousFormatInfo))

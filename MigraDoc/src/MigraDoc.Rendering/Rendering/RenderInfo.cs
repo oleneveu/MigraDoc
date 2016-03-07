@@ -41,7 +41,7 @@ namespace MigraDoc.Rendering
         /// <summary>
         /// Gets the format information in a specific derived type. For a table, for example, this will be a TableFormatInfo with information about the first and last row showing on a page.
         /// </summary>
-        public abstract FormatInfo FormatInfo { get; internal set; }
+        public abstract FormatInfo FormatInfo { get; set; }
 
         /// <summary>
         /// Gets the layout information.
@@ -55,7 +55,7 @@ namespace MigraDoc.Rendering
         /// <summary>
         /// Gets the document object to which the layout information applies. Use the Tag property of DocumentObject to identify an object.
         /// </summary>
-        public abstract DocumentObject DocumentObject { get; internal set; }
+        public abstract DocumentObject DocumentObject { get; set; }
 
         internal virtual void RemoveEnding()
         {

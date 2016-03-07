@@ -37,7 +37,7 @@ namespace MigraDoc.Rendering
     /// <summary>
     /// Renders a line format to an XGraphics object.
     /// </summary>
-    internal class LineFormatRenderer
+    public class LineFormatRenderer
     {
         public LineFormatRenderer(LineFormat lineFormat, XGraphics gfx)
         {
@@ -59,7 +59,7 @@ namespace MigraDoc.Rendering
 #endif
         }
 
-        internal XUnit GetWidth()
+        public XUnit GetWidth()
         {
             if (_lineFormat == null)
                 return 0;
@@ -75,7 +75,7 @@ namespace MigraDoc.Rendering
             return 0;
         }
 
-        internal void Render(XUnit xPosition, XUnit yPosition, XUnit width, XUnit height)
+        public void Render(XUnit xPosition, XUnit yPosition, XUnit width, XUnit height)
         {
             XUnit lineWidth = GetWidth();
             if (lineWidth > 0)

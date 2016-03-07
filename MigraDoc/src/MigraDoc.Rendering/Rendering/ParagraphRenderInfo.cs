@@ -46,7 +46,7 @@ namespace MigraDoc.Rendering
         public override FormatInfo FormatInfo
         {
             get { return _formatInfo; }
-            internal set { _formatInfo = (ParagraphFormatInfo)value; }
+            set { _formatInfo = (ParagraphFormatInfo)value; }
         }
         ParagraphFormatInfo _formatInfo = new ParagraphFormatInfo();
 
@@ -56,7 +56,7 @@ namespace MigraDoc.Rendering
         public override DocumentObject DocumentObject
         {
             get { return _paragraph; }
-            internal set { _paragraph = (Paragraph)value; }
+            set { _paragraph = (Paragraph)value; }
         }
         Paragraph _paragraph;
 

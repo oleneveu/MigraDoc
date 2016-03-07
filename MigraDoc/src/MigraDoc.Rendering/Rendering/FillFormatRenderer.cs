@@ -36,7 +36,7 @@ namespace MigraDoc.Rendering
     /// <summary>
     /// Renders fill formats.
     /// </summary>
-    internal class FillFormatRenderer
+    public class FillFormatRenderer
     {
         public FillFormatRenderer(FillFormat fillFormat, XGraphics gfx)
         {
@@ -44,7 +44,7 @@ namespace MigraDoc.Rendering
             _fillFormat = fillFormat;
         }
 
-        internal void Render(XUnit x, XUnit y, XUnit width, XUnit height)
+        public void Render(XUnit x, XUnit y, XUnit width, XUnit height)
         {
             XBrush brush = GetBrush();
 

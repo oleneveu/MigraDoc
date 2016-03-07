@@ -62,7 +62,7 @@ namespace MigraDoc.Rendering
             _renderInfo = renderInfo;
         }
 
-        internal override void Format(Area area, FormatInfo previousFormatInfo)
+        public override void Format(Area area, FormatInfo previousFormatInfo)
         {
             PageBreakRenderInfo pbRenderInfo = new PageBreakRenderInfo();
             pbRenderInfo.FormatInfo = new PageBreakFormatInfo();
@@ -73,12 +73,12 @@ namespace MigraDoc.Rendering
             pbRenderInfo.DocumentObject = _pageBreak;
         }
 
-        internal override void Render()
+        public override void Render()
         {
             // Nothing to do here.
         }
 
-        internal override LayoutInfo InitialLayoutInfo
+        public override LayoutInfo InitialLayoutInfo
         {
             get
             {
