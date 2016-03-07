@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>Jlsa.MigraDoc-gdi</id>
+		<version>1.50.4000-beta3b-jlsa</version>
+		<title>MigraDoc gdi (fork Jlsa)</title>
+		<authors>oleneveu</authors>
+		<description>
+			Fork de MigraDoc autorisant l'héritage sur les 'DocumentObject' et les 'Renderer' ce qui permet par exemple de générer
+			des graphiques spécifiques.
+			Sources: https://github.com/oleneveu/MigraDoc
+		</description>
+		<language>en-US</language>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<dependencies>
+			<group targetFramework="net40">
+				<dependency id="PDFsharp-gdi" version="1.50.4000-beta3b " />
+			</group>
+		</dependencies>
+		<references></references>
+		<tags></tags>
+	</metadata>
+	<files>
+		<file src="lib\" target="lib" />
+		<file src="tools\" target="tools" />
+		<file src="content\" target="content" />
+	</files>
+</package>
